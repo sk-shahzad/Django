@@ -70,7 +70,7 @@ def home(request):
 
     topics = Topic.objects.all()
     room_count = rooms.count()
-    room_messages = Messege.objects.all()
+    room_messages = Messege.objects.filter(Q(room__topic__name__icontains=q))
     
     context = {'rooms': rooms, 'topics': topics, 'room_count':room_count, 'room_messages': room_messages}
     return render(request, 'saleSawari/home.html', context)
